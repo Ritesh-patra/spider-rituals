@@ -4,765 +4,749 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>Spider Ritual - Animated Nav</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<body>
-    <div id="cursor"></div>
-    <div id="cur-ring"></div>
-    <canvas id="pcv"></canvas>
+</head>
 
-    <!-- LOADER -->
-    <div id="loader">
-        <div class="ld-pct" id="ldp">0</div>
-        <div class="ld-spider">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g stroke="#ff1f4b" stroke-width=".6" opacity=".6">
-                    <line x1="50" y1="50" x2="50" y2="6" />
-                    <line x1="50" y1="50" x2="87" y2="28" />
-                    <line x1="50" y1="50" x2="87" y2="72" />
-                    <line x1="50" y1="50" x2="50" y2="94" />
-                    <line x1="50" y1="50" x2="13" y2="72" />
-                    <line x1="50" y1="50" x2="13" y2="28" />
-                </g>
-                <g stroke="#ff1f4b" stroke-width=".55" fill="none">
-                    <polygon points="50,15 83,33 83,67 50,85 17,67 17,33" opacity=".25" />
-                    <polygon points="50,25 76,38 76,62 50,75 24,62 24,38" opacity=".45" />
-                    <polygon points="50,34 70,44 70,56 50,66 30,56 30,44" opacity=".7" />
-                </g>
-                <ellipse cx="50" cy="42" rx="8" ry="6" fill="#ff1f4b" />
-                <ellipse cx="50" cy="57" rx="12" ry="10" fill="#ff1f4b" />
-                <circle cx="47" cy="41" r="2.2" fill="white" opacity=".9" />
-                <circle cx="53" cy="41" r="2.2" fill="white" opacity=".9" />
-                <circle cx="47.5" cy="41.2" r="1.1" fill="#000" />
-                <circle cx="53.5" cy="41.2" r="1.1" fill="#000" />
-                <g stroke="#ff1f4b" stroke-width="1.8" stroke-linecap="round">
-                    <path d="M38 53 Q26 46 18 40" />
-                    <path d="M38 58 Q24 56 14 57" />
-                    <path d="M38 63 Q26 65 19 72" />
-                    <path d="M62 53 Q74 46 82 40" />
-                    <path d="M62 58 Q76 56 86 57" />
-                    <path d="M62 63 Q74 65 81 72" />
-                </g>
-                <line x1="50" y1="36" x2="50" y2="5" stroke="#ff1f4b" stroke-width="1" opacity=".35"
-                    stroke-dasharray="2 3" />
-            </svg>
-        </div>
-        <div class="ld-bar"></div>
-        <div class="ld-txt">Weaving the Ritual</div>
-    </div>
+<body class="bg-[#0a0a0a] text-white font-sans overflow-x-hidden">
 
-    <!-- NAV -->
-    <nav id="nb" class="bg-black text-gray-300 p-4 flex justify-between items-center relative shadow-lg font-sans">
+    <header class="relative w-full bg-black shadow-[0_4px_20px_rgba(255,31,75,0.15)] z-40 border-b border-[#ff1f4b]/20">
 
-        <a href="#" class="flex items-center gap-2 text-xl font-bold text-white">
-            <img src="images/logo1.png" class="w-28" alt="Spider Ritual Logo">
-        </a>
+        <canvas id="nav-spider-web" class="absolute inset-0 w-full h-full pointer-events-none opacity-70"></canvas>
 
-        <button id="menu-btn"
-            class="md:hidden block focus:outline-none text-gray-300 hover:text-[#ff1f4b] transition-colors">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-        </button>
+        <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+            <div class="flex justify-between items-center py-4">
 
-        <ul id="menu"
-            class="hidden absolute top-full left-0 w-full bg-black md:static md:flex md:w-auto md:items-center md:gap-8 p-5 md:p-0 shadow-xl md:shadow-none z-50 transition-all duration-300 border-t border-[#ff1f4b]/30 md:border-none">
-            <li class="py-2 md:py-0"><a href="#categories"
-                    class="hover:text-[#ff1f4b] font-medium transition-colors block">Categories</a></li>
-            <li class="py-2 md:py-0"><a href="#talent"
-                    class="hover:text-[#ff1f4b] font-medium transition-colors block">Talent</a></li>
-            <li class="py-2 md:py-0"><a href="#gallery"
-                    class="hover:text-[#ff1f4b] font-medium transition-colors block">Gallery</a></li>
-            <li class="py-2 md:py-0"><a href="#testimonials"
-                    class="hover:text-[#ff1f4b] font-medium transition-colors block">Reviews</a></li>
-            <li class="py-2 md:py-0"><a href="#about"
-                    class="hover:text-[#ff1f4b] font-medium transition-colors block">About</a></li>
-            <li class="pt-4 md:pt-0 pb-2 md:pb-0">
-                <a href="#contact"
-                    class="bg-[#ff1f4b] text-white px-5 py-2 rounded-md font-semibold hover:bg-red-700 transition-colors block text-center md:inline-block shadow-sm">
-                    Book Now
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="images/logo1.png" alt="Spider Ritual Logo" class="w-24" />
                 </a>
-            </li>
-        </ul>
-    </nav>
 
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const menu = document.getElementById('menu');
-        const menuIcon = document.getElementById('menu-icon');
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#categories"
+                        class="text-gray-300 hover:text-[#ff1f4b] text-sm font-semibold uppercase tracking-wider transition-colors glow-text">Categories</a>
+                    <a href="#talent"
+                        class="text-gray-300 hover:text-[#ff1f4b] text-sm font-semibold uppercase tracking-wider transition-colors glow-text">Talent</a>
+                    <a href="#gallery"
+                        class="text-gray-300 hover:text-[#ff1f4b] text-sm font-semibold uppercase tracking-wider transition-colors glow-text">Gallery</a>
+                    <a href="#about"
+                        class="text-gray-300 hover:text-[#ff1f4b] text-sm font-semibold uppercase tracking-wider transition-colors glow-text">About</a>
+                    <a id="header-book-btn" href="#contact"
+                        class="px-5 py-2 border border-[#ff1f4b] text-[#ff1f4b] rounded hover:bg-[#ff1f4b] hover:text-white transition-all shadow-[0_0_10px_rgba(255,31,75,0.2)] hover:shadow-[0_0_20px_rgba(255,31,75,0.6)] font-bold tracking-wider text-sm uppercase">
+                        Book Now
+                    </a>
+                </nav>
 
-        menuBtn.addEventListener('click', () => {
-            // Toggle menu visibility
-            menu.classList.toggle('hidden');
-            menu.classList.toggle('flex');
-            menu.classList.toggle('flex-col');
-
-            // Change icon between Hamburger and 'X' (Close)
-            if (menu.classList.contains('hidden')) {
-                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); // Hamburger Icon
-            } else {
-                menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // X Icon
-            }
-        });
-    </script>
-
-    <!-- HERO -->
-    <section id="hero">
-        <canvas id="hcv"></canvas>
-        <div class="hero-bg"></div>
-        <div class="hero-c">
-            <div class="hero-badge">
-                <svg width="8" height="8" viewBox="0 0 8 8">
-                    <circle cx="4" cy="4" r="3" fill="#ff1f4b" />
-                </svg>
-                Premium Talent Booking Platform
-            </div>
-            <h1 class="hero-title"><span class="l1">Spider</span><span class="l2">Ritual</span></h1>
-            <p class="hero-sub">Book Top Talent Instantly — Across Every Stage</p>
-            <div class="hero-btns">
-                <a href="#talent" class="btn-p">Explore Talent</a>
-                <a href="#about" class="btn-o">Learn More</a>
+                <button id="open-menu-btn"
+                    class="md:hidden text-gray-300 hover:text-[#ff1f4b] focus:outline-none transition-colors">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
-        <div class="hero-sc">
-            <div class="sc-line"></div><span>Scroll</span>
+    </header>
+
+    <div id="menu-overlay"
+        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <aside id="side-menu"
+        class="fixed top-0 right-0 h-full w-64 bg-[#0a0a0a] border-l border-[#ff1f4b]/30 z-50 transform translate-x-full transition-transform duration-300 shadow-[-10px_0_30px_rgba(255,31,75,0.1)] flex flex-col">
+
+        <div class="flex justify-between items-center p-5 border-b border-gray-800">
+            <span class="text-[#ff1f4b] font-bold tracking-widest uppercase">Menu</span>
+            <button id="close-menu-btn" class="text-gray-400 hover:text-[#ff1f4b] transition-colors focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="flex flex-col p-5 gap-6 mt-4 flex-grow overflow-y-auto">
+            <a href="#categories"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">Categories</a>
+            <a href="#talent"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">Talent</a>
+            <a href="#gallery"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">Gallery</a>
+            <a href="#reviews"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">Reviews</a>
+            <a href="#about"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">About</a>
+        </nav>
+
+        <div class="p-5 border-t border-gray-800">
+            <a id="side-book-btn" href="#contact"
+                class="block w-full text-center py-3 bg-[#ff1f4b] text-white font-bold rounded hover:bg-red-700 transition-colors shadow-[0_0_15px_rgba(255,31,75,0.4)]">
+                BOOK NOW
+            </a>
+        </div>
+    </aside>
+
+    <!-- Hero Section -->
+
+    <section
+        class="relative w-full min-h-screen flex items-center justify-center overflow-hidden border-b border-[#ff1f4b]/20">
+
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ff1f4b]/5 rounded-full blur-[120px] pointer-events-none z-0">
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center mt-10 md:mt-0">
+
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 mb-8 border border-[#ff1f4b]/50 rounded-full bg-[#ff1f4b]/10 text-[#ff1f4b] text-xs md:text-sm font-bold tracking-[0.2em] uppercase shadow-[0_0_15px_rgba(255,31,75,0.2)] backdrop-blur-sm animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-[#ff1f4b]"></span>
+                Sacred Connections
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight text-white">
+                Divine Rituals, <br />
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1f4b] to-red-800 text-glow">Seamlessly
+                    Woven.</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+                From pujas to ceremonies, find the right Brahmin for every ritual with <span
+                    class="text-white font-bold tracking-wider">Spider Rituals</span>.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a id="hero-book-btn" href="#book"
+                    class="w-full sm:w-auto px-10 py-4 bg-[#ff1f4b] text-white font-bold rounded text-sm md:text-base uppercase tracking-[0.15em] btn-glow hover:bg-red-600 transition-all duration-300 transform hover:-translate-y-1">
+                    Book a Brahmin
+                </a>
+                <a href="#services"
+                    class="w-full sm:w-auto px-10 py-4 border-2 border-gray-700 text-gray-300 font-bold rounded text-sm md:text-base uppercase tracking-[0.15em] hover:border-[#ff1f4b] hover:text-[#ff1f4b] hover:bg-[#ff1f4b]/5 transition-all duration-300 transform hover:-translate-y-1">
+                    Explore Services
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- about us -->
+    <section id="about" class="relative py-24 bg-[#0a0a0a] overflow-hidden font-sans border-t border-[#ff1f4b]/20">
+
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ff1f4b]/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                <div class="relative w-full h-full min-h-[350px] lg:min-h-[500px] rounded-2xl group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-[#ff1f4b] to-red-900 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+                    </div>
+
+                    <div class="relative h-full w-full  rounded-2xl overflow-hidden border border-[#ff1f4b]/30">
+                        <img src="images/im1.jpeg" alt="Spider Rituals Pandit"
+                            class="absolute inset-0 w-full h-full object-cover  object-center opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+
+                        <!-- <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div> -->
+
+                        <!-- <div class="absolute lg:hidden bottom-6 left-6 bg-black/80 backdrop-blur-md border border-[#ff1f4b]/50 p-4 rounded-xl shadow-[0_0_15px_rgba(255,31,75,0.3)]">
+                        <p class="text-[#ff1f4b] text-3xl font-bold font-serif mb-1">100%</p>
+                        <p class="text-gray-300 text-xs uppercase tracking-wider font-semibold">Authentic Vedic<br>Rituals</p>
+                    </div> -->
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center">
+
+                    <div class="inline-flex items-center gap-3 mb-6">
+                        <span class="w-10 h-[2px] bg-[#ff1f4b]"></span>
+                        <span class="text-[#ff1f4b] text-xs font-bold tracking-[0.25em] uppercase">About Spider
+                            Rituals</span>
+                    </div>
+
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                        Weaving the Sacred <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1f4b] to-red-600">Threads
+                            of Tradition.</span>
+                    </h2>
+
+                    <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-6">
+                        At <strong class="text-white">Spider Rituals</strong>, we understand the profound significance
+                        of sacred ceremonies in your life. Just as a spider intricately weaves its web, we connect
+                        devotees with highly experienced and authentic Brahmins, ensuring every ritual is performed with
+                        precision, devotion, and adherence to Vedic guidelines.
+                    </p>
+                    <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-8">
+                        From finding the right Pandit for your specific needs to organizing the complete Samagri, we
+                        handle the intricacies so you can focus entirely on your prayers and family.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#ff1f4b]/10 border border-[#ff1f4b]/30 flex items-center justify-center text-[#ff1f4b]">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Verified Brahmins</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#ff1f4b]/10 border border-[#ff1f4b]/30 flex items-center justify-center text-[#ff1f4b]">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Complete Samagri Kit</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#ff1f4b]/10 border border-[#ff1f4b]/30 flex items-center justify-center text-[#ff1f4b]">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Hassle-Free Booking</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#ff1f4b]/10 border border-[#ff1f4b]/30 flex items-center justify-center text-[#ff1f4b]">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Vedic Accuracy</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="#services-grid"
+                            class="inline-flex items-center gap-2 px-8 py-3 bg-transparent border-2 border-[#ff1f4b] text-[#ff1f4b] font-bold uppercase tracking-wider text-sm rounded hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(255,31,75,0.1)] hover:shadow-[0_0_20px_rgba(255,31,75,0.5)]">
+                            Explore Services <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- MARQUEE -->
-    <div class="mq-wrap">
-        <div class="mq-track" id="mq"></div>
+
+    <section class="py-20 bg-[#050505] text-white overflow-hidden relative">
+
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#ff1f4b]/5 rounded-[100%] blur-[100px] pointer-events-none z-0">
+        </div>
+
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-wide">
+                    Core Ritual <span class="text-[#ff1f4b] drop-shadow-[0_0_15px_rgba(255,31,75,0.5)]">Services</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#ff1f4b] to-transparent mx-auto mb-4"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">Authentic Vedic rituals performed by highly experienced
+                    Brahmins tailored to your traditions.</p>
+            </div>
+
+            <div class="swiper coreServicesSwiper pb-16 px-4">
+                <div class="swiper-wrapper" id="swiper-services-wrapper">
+                </div>
+
+                <div class="swiper-pagination !bottom-0"></div>
+                <div class="swiper-button-prev !left-2 md:!left-10 hidden md:flex"></div>
+                <div class="swiper-button-next !right-2 md:!right-10 hidden md:flex"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <div class="bg-[#111] border border-[#ff1f4b]/30 w-full max-w-md rounded-2xl p-8 relative shadow-2xl z-10">
+
+            <button type="button" onclick="closeModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-[#ff1f4b] transition-colors focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+
+            <h3 class="text-2xl font-bold text-[#ff1f4b] mb-1">Book Your Ritual</h3>
+            <p id="selected-service-name" class="text-gray-400 text-sm mb-6 font-medium uppercase tracking-widest"></p>
+
+            <form id="whatsapp-form" class="space-y-4">
+                <input type="hidden" id="service-input">
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Name</label>
+                    <input type="text" required id="user-name" placeholder="Enter Your Name"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Phone No.</label>
+                    <input type="tel" required id="phone-number" placeholder="Enter phone number (e.g. +919xxxxxxxxx)"
+                        pattern="[0-9+\- ]{7,20}"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Location</label>
+                    <textarea required id="location" rows="2" placeholder="Enter Full Address"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Are you looking for Brahmin?</label>
+                    <select id="brahmin-pref"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all">
+                        <option value="">Select ethnicity (optional)</option>
+                        <option value="Odia">Odia</option>
+                        <option value="Telugu">Telugu</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Marwadi">Marwadi</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">What are your rituals?</label>
+                    <textarea id="rituals" rows="2" placeholder="Describe the rituals you need"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Select Date</label>
+                    <input type="date" required id="ritual-date" onclick="this.showPicker()"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-gray-300 focus:border-[#ff1f4b] outline-none transition-all cursor-pointer">
+                </div>
+
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeModal()"
+                        class="w-1/3 border border-gray-700 text-gray-400 font-bold py-3 rounded-lg hover:bg-gray-800 hover:text-white transition-all text-sm uppercase tracking-wider">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                        class="w-2/3 bg-[#ff1f4b] text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all shadow-lg shadow-red-900/20 text-sm uppercase tracking-wider">
+                        Send Request
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <section id="about">
-        <div class="ab-grid">
-            <div class="ab-vis fi">
-                <div class="ab-ww">
-                    <canvas id="acv" width="420" height="420"></canvas>
-                    <div class="ab-cb">
-                        <svg viewBox="0 0 24 24" fill="none">
-                            <path
-                                d="M12 2C12 2 7 7.5 7 12.5C7 15.8 9.2 18.6 12 20C14.8 18.6 17 15.8 17 12.5C17 7.5 12 2 12 2Z"
-                                fill="white" opacity=".9" />
-                            <circle cx="12" cy="11.5" r="3" fill="white" />
-                        </svg>
-                    </div>
+    <style>
+    /* FAQ Accordion Transitions */
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+        opacity: 0;
+    }
+    .faq-box.open .faq-answer {
+        max-height: 300px; /* Adjust if answer is very long */
+        opacity: 1;
+    }
+    .faq-box.open {
+        border-color: #ff1f4b;
+        background: linear-gradient(145deg, #111, #1a0508);
+        box-shadow: 0 10px 30px rgba(255, 31, 75, 0.15);
+    }
+    .faq-box.open .faq-icon-line-vertical {
+        transform: rotate(90deg);
+        opacity: 0;
+    }
+    .faq-box.open h4 {
+        color: #ff1f4b;
+    }
+</style>
+
+<section class="relative py-24 bg-[#050505] overflow-hidden font-sans border-t border-gray-900">
+    
+    <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-[#ff1f4b]/5 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        
+        <div class="flex flex-col lg:flex-row gap-16 lg:gap-20">
+            
+            <div class="lg:w-1/3 lg:sticky lg:top-24 self-start">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-8 h-[2px] bg-[#ff1f4b]"></span>
+                    <span class="text-[#ff1f4b] text-sm font-bold tracking-[0.2em] uppercase">Support</span>
                 </div>
-            </div>
-            <div class="ab-txt">
-                <div class="eye">Our Story</div>
-                <h2 class="stitle">The <em>Ritual</em><br>of Excellence</h2>
-                <p>Spider Ritual is India's most exclusive talent booking platform — weaving connections between
-                    visionaries and the voices that move audiences. We curate the finest anchors, artists, creators and
-                    performers.</p>
-                <p>From intimate corporate soirées to grand stadium spectacles, our network spans the entire spectrum of
-                    entertainment — delivering seamless booking with unmatched professionalism and speed.</p>
-                <div class="ab-stats">
-                    <div class="stat-c"><span class="snum" data-t="500">0</span><span class="slbl">Artists</span></div>
-                    <div class="stat-c"><span class="snum" data-t="1200">0</span><span class="slbl">Events</span></div>
-                    <div class="stat-c"><span class="snum" data-t="98">0</span><span class="slbl">% Satisfaction</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CATEGORIES -->
-    <section id="categories">
-        <div class="eye">What We Offer</div>
-        <h2 class="stitle fu">Browse <em>Categories</em></h2>
-        <div class="cat-grid" id="cg"></div>
-    </section>
-    <div class="div"></div>
-
-    <!-- TALENT -->
-    <section class="relative w-full py-20 px-6 md:px-12 bg-[#0a0a0a] overflow-hidden font-sans">
-
-        <canvas id="spider-web-canvas"
-            class="absolute inset-0 w-full h-full z-0 opacity-40 pointer-events-none"></canvas>
-
-        <div class="relative z-10 max-w-7xl mx-auto">
-            <div class="mb-12 text-center md:text-left">
-                <p
-                    class="text-[#ff1f4b] text-sm font-bold tracking-[0.2em] uppercase mb-2 flex items-center justify-center md:justify-start gap-2">
-                    <span class="w-8 h-[2px] bg-[#ff1f4b]"></span> Our Roster
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                    Frequently <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1f4b] to-red-800">Asked Questions</span>
+                </h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    Clear your doubts before booking. Here are the answers to the most common questions about our authentic Vedic rituals and Brahmin services.
                 </p>
-                <h2 class="text-4xl md:text-5xl font-serif text-white font-bold">Featured <span
-                        class="text-gray-400 italic font-light">Talent</span></h2>
+                <div class="bg-[#111] border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-[#ff1f4b]/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                    <h3 class="text-white font-bold mb-2 relative z-10">Still have a question?</h3>
+                    <p class="text-gray-500 text-sm mb-4 relative z-10">Our support team is ready to help you 24/7 via WhatsApp.</p>
+                    <a href="https://wa.me/919348148310" target="_blank" class="inline-flex items-center gap-2 text-[#ff1f4b] font-bold text-sm uppercase tracking-widest hover:text-white transition-colors relative z-10">
+                        Chat with us <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16">
-                <div class="cat-card active relative rounded-xl overflow-hidden cursor-pointer h-40 group"
-                    onclick="loadTalent('singer', this)">
-                    <img src="https://images.unsplash.com/photo-1516280440504-7c31828f23f8?q=80&w=500&auto=format&fit=crop"
-                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-500"
-                        alt="Singers">
-                    <div class="absolute inset-0 cat-overlay"></div>
-                    <div class="absolute bottom-4 left-4 z-10">
-                        <h3 class="text-xl font-bold text-white group-hover:text-[#ff1f4b] transition-colors">Singers
-                        </h3>
+            <div class="lg:w-2/3 space-y-5">
+                
+                <div class="faq-box bg-[#0d0d0d] border border-gray-800 rounded-2xl p-6 transition-all duration-300 cursor-pointer" onclick="toggleAdvancedFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold text-gray-200 transition-colors">How do I book a Pandit ji for my ritual?</h4>
+                        <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <span class="absolute w-4 h-[2px] bg-[#ff1f4b] transition-all duration-300"></span>
+                            <span class="faq-icon-line-vertical absolute w-[2px] h-4 bg-[#ff1f4b] transition-all duration-300"></span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 text-sm leading-relaxed border-t border-gray-800 pt-4">
+                            Booking is very simple. Choose your desired service from our "Core Rituals" section, click "Book Now", and fill in your basic details. The request will be sent to our WhatsApp, and our team will instantly confirm your booking and Pandit ji's availability.
+                        </p>
                     </div>
                 </div>
 
-                <div class="cat-card relative rounded-xl overflow-hidden cursor-pointer h-40 group"
-                    onclick="loadTalent('actor', this)">
-                    <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=500&auto=format&fit=crop"
-                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-500"
-                        alt="Actors">
-                    <div class="absolute inset-0 cat-overlay"></div>
-                    <div class="absolute bottom-4 left-4 z-10">
-                        <h3 class="text-xl font-bold text-white group-hover:text-[#ff1f4b] transition-colors">Actors
-                        </h3>
+                <div class="faq-box bg-[#0d0d0d] border border-gray-800 rounded-2xl p-6 transition-all duration-300 cursor-pointer" onclick="toggleAdvancedFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold text-gray-200 transition-colors">Is the Puja Samagri included in the booking?</h4>
+                        <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <span class="absolute w-4 h-[2px] bg-[#ff1f4b] transition-all duration-300"></span>
+                            <span class="faq-icon-line-vertical absolute w-[2px] h-4 bg-[#ff1f4b] transition-all duration-300"></span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 text-sm leading-relaxed border-t border-gray-800 pt-4">
+                            Yes! We offer fully inclusive packages. Our experienced Brahmins will bring all the authentic and pure Puja Samagri required for your specific ritual, so you can focus entirely on your prayers without any hassle.
+                        </p>
                     </div>
                 </div>
 
-                <div class="cat-card relative rounded-xl overflow-hidden cursor-pointer h-40 group"
-                    onclick="loadTalent('comedian', this)">
-                    <img src="https://images.unsplash.com/photo-1585699324551-f6c309eedeca?q=80&w=500&auto=format&fit=crop"
-                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-500"
-                        alt="Comedians">
-                    <div class="absolute inset-0 cat-overlay"></div>
-                    <div class="absolute bottom-4 left-4 z-10">
-                        <h3 class="text-xl font-bold text-white group-hover:text-[#ff1f4b] transition-colors">Comedians
-                        </h3>
+                <div class="faq-box bg-[#0d0d0d] border border-gray-800 rounded-2xl p-6 transition-all duration-300 cursor-pointer" onclick="toggleAdvancedFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold text-gray-200 transition-colors">Do you provide Brahmins based on specific regional traditions?</h4>
+                        <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <span class="absolute w-4 h-[2px] bg-[#ff1f4b] transition-all duration-300"></span>
+                            <span class="faq-icon-line-vertical absolute w-[2px] h-4 bg-[#ff1f4b] transition-all duration-300"></span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 text-sm leading-relaxed border-t border-gray-800 pt-4">
+                            Absolutely. We understand that every region has its unique Vedic traditions. We provide specialized Pandits including Marwadi, Telugu, Bengali, and North Indian Brahmins to ensure your ritual is conducted exactly as per your family's customs.
+                        </p>
                     </div>
                 </div>
 
-                <div class="cat-card relative rounded-xl overflow-hidden cursor-pointer h-40 group"
-                    onclick="loadTalent('host', this)">
-                    <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=500&auto=format&fit=crop"
-                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-500"
-                        alt="Hosts">
-                    <div class="absolute inset-0 cat-overlay"></div>
-                    <div class="absolute bottom-4 left-4 z-10">
-                        <h3 class="text-xl font-bold text-white group-hover:text-[#ff1f4b] transition-colors">Anchors
-                        </h3>
+                <div class="faq-box bg-[#0d0d0d] border border-gray-800 rounded-2xl p-6 transition-all duration-300 cursor-pointer" onclick="toggleAdvancedFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold text-gray-200 transition-colors">How are the payments handled?</h4>
+                        <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <span class="absolute w-4 h-[2px] bg-[#ff1f4b] transition-all duration-300"></span>
+                            <span class="faq-icon-line-vertical absolute w-[2px] h-4 bg-[#ff1f4b] transition-all duration-300"></span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 text-sm leading-relaxed border-t border-gray-800 pt-4">
+                            Once your booking is confirmed over WhatsApp, we will share the payment details. You can pay securely via UPI, Bank Transfer, or Cash upon completion of the ritual, depending on the service package you choose.
+                        </p>
                     </div>
                 </div>
-            </div>
 
-            <div class="swiper talentSwiper pb-14">
-                <div class="swiper-wrapper" id="swiper-dynamic-wrapper">
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleAdvancedFaq(clickedBox) {
+        // Find all faq boxes
+        const allBoxes = document.querySelectorAll('.faq-box');
+        
+        // Check if the clicked box is already open
+        const isOpen = clickedBox.classList.contains('open');
+
+        // Close all boxes first for a clean accordion effect
+        allBoxes.forEach(box => {
+            box.classList.remove('open');
+        });
+
+        // If it wasn't open, open it now
+        if (!isOpen) {
+            clickedBox.classList.add('open');
+        }
+    }
+</script>
+  
+
+    <footer
+        class="relative bg-[#050505] pt-20 pb-10 border-t border-[#ff1f4b]/20 overflow-hidden font-sans text-gray-300">
+
+        <div
+            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[200px] bg-[#ff1f4b]/5 blur-[100px] pointer-events-none z-0">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+
+                <div class="flex flex-col">
+                    <a href="#" class="flex items-center gap-3 group mb-6 inline-block w-fit">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            class="group-hover:drop-shadow-[0_0_8px_rgba(255,31,75,0.8)] transition-all">
+                            <path d="M12 2C12 2 7 7 7 12.5C7 15.6 9 18.4 12 20C15 18.4 17 15.6 17 12.5C17 7 12 2 12 2Z"
+                                fill="#ff1f4b" opacity=".9" />
+                            <circle cx="12" cy="11" r="3" fill="#ff1f4b" />
+                            <path d="M5 11 Q2 12 1 15" stroke="#ff1f4b" stroke-width="1.5" stroke-linecap="round"
+                                opacity=".7" />
+                            <path d="M5 15 Q2 16 2 19" stroke="#ff1f4b" stroke-width="1.5" stroke-linecap="round"
+                                opacity=".7" />
+                            <path d="M19 11 Q22 12 23 15" stroke="#ff1f4b" stroke-width="1.5" stroke-linecap="round"
+                                opacity=".7" />
+                            <path d="M19 15 Q22 16 22 19" stroke="#ff1f4b" stroke-width="1.5" stroke-linecap="round"
+                                opacity=".7" />
+                        </svg>
+                        <span
+                            class="text-2xl font-bold tracking-widest text-white group-hover:text-[#ff1f4b] transition-colors">Spider
+                            Rituals</span>
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Seamlessly weaving the sacred threads of tradition. Find the most authentic and experienced
+                        Brahmins for all your Vedic rituals and ceremonies.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-[#111] border border-gray-800 flex items-center justify-center hover:border-[#ff1f4b] hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_15px_rgba(255,31,75,0.5)]">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-[#111] border border-gray-800 flex items-center justify-center hover:border-[#ff1f4b] hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_15px_rgba(255,31,75,0.5)]">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-[#111] border border-gray-800 flex items-center justify-center hover:border-[#ff1f4b] hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_15px_rgba(255,31,75,0.5)]">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </section>
 
-    <!-- GALLERY -->
-    <section id="gallery">
-        <div class="gh">
-            <div>
-                <div class="eye">Our World</div>
-                <h2 class="stitle fu">Event <em>Gallery</em></h2>
-            </div>
-            <a href="#contact" class="btn-o" style="height:fit-content">View All Events</a>
-        </div>
-        <div class="gm" id="gg"></div>
-    </section>
-    <div class="div"></div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6 relative inline-block">
+                        Quick Links
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-[#ff1f4b]"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                About Us</a></li>
+                        <li><a href="#talent"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Our Talent</a></li>
+                        <li><a href="#gallery"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Gallery</a></li>
+                        <li><a href="#testimonials"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Reviews</a></li>
+                        <li><a href="#contact"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Contact Us</a></li>
+                    </ul>
+                </div>
 
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-        <div style="text-align:center;margin-bottom:14px;">
-            <div class="eye" style="justify-content:center;">Client Reviews</div>
-            <h2 class="stitle fu" style="margin-bottom:0;">What They <em>Say</em></h2>
-        </div>
-        <div class="tsti-c" style="margin-top:52px;">
-            <div class="tsti-tw">
-                <div class="tsti-track" id="tt"></div>
-            </div>
-            <div class="tsti-ctrl">
-                <button class="tsti-btn" id="tprev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path d="M15 18l-6-6 6-6" />
-                    </svg></button>
-                <div class="tsti-dots" id="td"></div>
-                <button class="tsti-btn" id="tnext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path d="M9 18l6-6-6-6" />
-                    </svg></button>
-            </div>
-        </div>
-    </section>
-    <div class="div"></div>
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6 relative inline-block">
+                        Top Services
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-[#ff1f4b]"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Marriage Ceremony</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Griha Pravesh</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Rudrabhishek Puja</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Havan / Yagya</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Naming Ceremony</a></li>
+                    </ul>
+                </div>
 
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6 relative inline-block">
+                        Get In Touch
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-[#ff1f4b]"></span>
+                    </h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-[#ff1f4b] mt-1"></i>
+                            <span class="text-gray-400 text-sm">Bhubaneswar, Odisha, India</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone-alt text-[#ff1f4b]"></i>
+                            <a href="tel:+919348148310"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm font-bold tracking-wider">+91
+                                9348148310</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-[#ff1f4b]"></i>
+                            <a href="mailto:booking@spider-rituals.com"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm">booking@spider-rituals.com</a>
+                        </li>
+                    </ul>
 
-    <!-- FOOTER -->
-    <footer id="contact">
-        <div class="ft">
-            <div>
-                <span class="flogo">Spider Ritual</span>
-                <p class="ftag">India's most exclusive talent booking platform. Connecting visionaries with voices that
-                    move audiences.</p>
-                <div class="fsoc">
-                    <a href="#" class="sb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5">
-                            <rect x="2" y="2" width="20" height="20" rx="5" />
-                            <circle cx="12" cy="12" r="5" />
-                            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
-                        </svg></a>
-                    <a href="#" class="sb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5">
-                            <path
-                                d="M22.5 6.5s-.3-2-1.2-2.8c-1.1-1.2-2.4-1.2-3-1.3C15.6 2.2 12 2.2 12 2.2s-3.6 0-6.3.2c-.6.1-1.9.1-3 1.3C1.8 4.5 1.5 6.5 1.5 6.5S1.2 8.8 1.2 11v2.1c0 2.2.3 4.4.3 4.4s.3 2 1.2 2.8c1.1 1.2 2.6 1.1 3.3 1.2C8 21.7 12 21.8 12 21.8s3.6 0 6.3-.3c.6-.1 1.9-.1 3-1.3.9-.8 1.2-2.8 1.2-2.8s.3-2.2.3-4.4V11c0-2.2-.3-4.5-.3-4.5zM9.7 15.5v-7l6.6 3.5-6.6 3.5z" />
-                        </svg></a>
-                    <a href="#" class="sb"><svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                        </svg></a>
-                    <a href="https://wa.me/919999999999" class="sb"><svg viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5">
-                            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-                            <path d="M9 10c.5 1 1 2 2 3s2 1.5 3 2" />
-                        </svg></a>
+                    <div class="mt-6">
+                        <a href="https://wa.me/919348148310" target="_blank"
+                            class="inline-flex items-center gap-2 w-full justify-center px-4 py-3 bg-[#111] border border-[#ff1f4b] text-[#ff1f4b] font-bold rounded hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 text-sm uppercase tracking-widest shadow-[0_0_10px_rgba(255,31,75,0.1)]">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-xs text-center md:text-left">
+                    &copy; <span id="current-year"></span> Spider Rituals. All rights reserved.
+                </p>
+                <div class="flex gap-4 text-xs text-gray-500">
+                    <a href="#" class="hover:text-[#ff1f4b] transition-colors">Privacy Policy</a>
+                    <span class="text-gray-800">|</span>
+                    <a href="#" class="hover:text-[#ff1f4b] transition-colors">Terms of Service</a>
                 </div>
             </div>
-            <div class="fc">
-                <h5>Platform</h5>
-                <ul>
-                    <li><a href="#categories">Categories</a></li>
-                    <li><a href="#talent">Browse Talent</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#about">About Us</a></li>
-                </ul>
-            </div>
-            <div class="fc">
-                <h5>Categories</h5>
-                <ul>
-                    <li><a href="#">Anchors & Hosts</a></li>
-                    <li><a href="#">Singers</a></li>
-                    <li><a href="#">Comedians</a></li>
-                    <li><a href="#">Influencers</a></li>
-                </ul>
-            </div>
-            <div class="fc">
-                <h5>Contact</h5>
-                <ul>
-                    <li><a href="mailto:hello@spiderritual.com">hello@spiderritual.com</a></li>
-                    <li><a href="tel:+919999999999">+91 99999 99999</a></li>
-                    <li><a href="#">Mumbai, India</a></li>
-                    <li><a href="#">WhatsApp Us</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="fb2">
-            <p class="fcp">© 2026 Spider Ritual. All rights reserved.</p>
-            <div class="fleg"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Refund Policy</a></div>
+
         </div>
     </footer>
 
-    <!-- MODAL -->
-    <div id="modal">
-        <div class="mb">
-            <button class="mc" id="mc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M18 6L6 18M6 6l12 12" />
-                </svg></button>
-            <div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <rect x="3" y="4" width="18" height="18" rx="2" />
-                    <path d="M16 2v4M8 2v4M3 10h18" />
-                </svg></div>
-            <h2 class="mt">Book <span class="mtn" id="mtn">Talent</span></h2>
-            <p class="ms">Fill details — we'll connect you instantly via WhatsApp</p>
-            <div class="fr">
-                <div class="fg"><label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>Your Name</label><input type="text" id="fn" placeholder="Full name"></div>
-                <div class="fg"><label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.64 12 19.79 19.79 0 0 1 1.56 3.44 2 2 0 0 1 3.53 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.08 6.08l1.31-1.31a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg>Phone Number</label><input type="tel" id="fph" placeholder="+91 XXXXX XXXXX"></div>
-            </div>
-            <div class="fg"><label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                        <path d="M16 2v4M8 2v4M3 10h18" />
-                    </svg>Event Date</label><input type="text" id="fd" placeholder="DD / MM / YYYY"></div>
-            <div class="fg"><label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>Event Details</label><textarea id="fev" rows="3"
-                    placeholder="Event type, location, audience size…"></textarea></div>
-            <button class="sbtn" id="sb2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-                </svg>Send via WhatsApp</button>
-        </div>
-    </div>
-
-    <!-- LIGHTBOX -->
-    <div id="lb"><button class="lbc" id="lbc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="1.5">
-                <path d="M18 6L6 18M6 6l12 12" />
-            </svg></button>
-        <div id="lbc2"></div>
-    </div>
-
     <script>
-        // ── SVG ICON PATHS ─────────────────────────
-        const IC = {
-            mic: `<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>`,
-            music: `<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>`,
-            film: `<rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M17 7h5M2 17h5M17 17h5"/>`,
-            star: `<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>`,
-            tv: `<rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/>`,
-            laugh: `<circle cx="12" cy="12" r="10"/><path d="M8 13s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>`,
-            video: `<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>`,
-            edit: `<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>`,
-            users: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>`,
-            radio: `<circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>`,
-            arrow: `<path d="M5 12h14M12 5l7 7-7 7"/>`,
-            heart: `<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>`,
-            zoom: `<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>`,
-            person: `<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>`,
-        };
-        function svgIcon(key, size, color, fill) {
-            const f = fill ? `fill="${color}" stroke="none"` : `fill="none" stroke="${color}" stroke-width="1.4"`;
-            return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" ${f}>${IC[key] || ''}</svg>`;
-        }
-
-        const WA = '919999999999';
-
-        const CATS = [
-            { icon: 'mic', name: 'Anchors / Hosts', count: '48 artists', col: '#ff1f4b' },
-            { icon: 'music', name: 'Singers', count: '62 artists', col: '#c9a84c' },
-            { icon: 'film', name: 'Actors', count: '39 artists', col: '#8b2020' },
-            { icon: 'star', name: 'Actresses', count: '41 artists', col: '#c0392b' },
-            { icon: 'tv', name: 'Serial Artists', count: '55 artists', col: '#7a6000' },
-            { icon: 'laugh', name: 'Stand-up Comedians', count: '28 artists', col: '#ff1f4b' },
-            { icon: 'video', name: 'Comedy Creators', count: '34 artists', col: '#20608b' },
-            { icon: 'edit', name: 'Content Creators', count: '76 artists', col: '#308b20' },
-            { icon: 'users', name: 'Influencers', count: '89 artists', col: '#8b2080' },
-            { icon: 'radio', name: 'YouTubers/Streamers', count: '53 artists', col: '#c0392b' },
-        ];
-
-        const TALENTS = [
-            { name: 'Arjun Mehta', cat: 'Anchor / Host', desc: 'Award-winning bilingual anchor with 10+ years hosting premium events and live TV.', badge: 'Top Rated', bc: '#ff1f4b', ik: 'mic', ic: '#ff1f4b' },
-            { name: 'Priya Sharma', cat: 'Singer', desc: 'Versatile playback & live performer across Bollywood, classical and fusion genres.', badge: 'Featured', bc: '#c9a84c', ik: 'music', ic: '#c9a84c' },
-            { name: 'Rohit Kapoor', cat: 'Actor', desc: 'Silver screen & OTT veteran known for nuanced performances and brand endorsements.', badge: 'Celebrity', bc: '#8b2020', ik: 'film', ic: '#8b2020' },
-            { name: 'Neha Verma', cat: 'Actress', desc: 'National award nominee bringing charisma to brand campaigns, films and live shows.', badge: 'Premium', bc: '#c0392b', ik: 'star', ic: '#c0392b' },
-            { name: 'Dev Saxena', cat: 'Stand-up Comedian', desc: 'Netflix special comedian with sold-out shows across 20+ cities and 50M+ views.', badge: 'Trending', bc: '#ff1f4b', ik: 'laugh', ic: '#ff1f4b' },
-            { name: 'Aisha Khan', cat: 'Content Creator', desc: '5M+ subscribers creating viral lifestyle & fashion content across all platforms.', badge: 'Viral', bc: '#20608b', ik: 'edit', ic: '#20608b' },
-            { name: 'Vikram Rao', cat: 'Anchor / Host', desc: 'High-energy corporate event specialist who has hosted 500+ mega events nationally.', badge: 'Top Rated', bc: '#ff1f4b', ik: 'mic', ic: '#ff1f4b' },
-            { name: 'Sunita Patel', cat: 'Influencer', desc: '8M followers. Brand partnerships with 100+ luxury labels. Authentic, massive reach.', badge: 'Mega', bc: '#8b2080', ik: 'users', ic: '#8b2080' },
-            { name: 'Karan Singh', cat: 'YouTuber / Streamer', desc: 'Gaming & tech streamer with 3M subscribers and record-breaking live viewership.', badge: 'Rising', bc: '#c0392b', ik: 'radio', ic: '#c0392b' },
-            { name: 'Meera Nair', cat: 'Serial Artist', desc: 'Beloved TV personality from top-rated Indian serials, available for brand events.', badge: 'Fan Fav', bc: '#7a6000', ik: 'tv', ic: '#c9a84c' },
-            { name: 'Aarav Joshi', cat: 'Comedy Creator', desc: 'Sketch comedy maestro with 10M+ monthly views on Reels and YouTube Shorts.', badge: 'Trending', bc: '#ff1f4b', ik: 'laugh', ic: '#ff1f4b' },
-            { name: 'Kavya Iyer', cat: 'Actress', desc: 'South cinema superstar crossing over to Bollywood — charm, talent, and versatility.', badge: 'Star', bc: '#c0392b', ik: 'star', ic: '#c0392b' },
-        ];
-
-        const TESTIS = [
-            { txt: 'Spider Ritual transformed our corporate gala. The anchor they booked was phenomenal — professional, engaging and exactly what we envisioned.', name: 'Rajesh Mehra', role: 'CEO, Apex Corp', stars: 5 },
-            { txt: 'We needed a last-minute celebrity appearance and Spider Ritual delivered within 48 hours. Absolutely world-class service and talent quality.', name: 'Priya Anand', role: 'Event Head, FashionWeek India', stars: 5 },
-            { txt: 'The comedian they suggested for our product launch had the entire audience in stitches. ROI was incredible. Will book again without question.', name: 'Sanjay Kulkarni', role: 'Marketing Director, BrandCo', stars: 5 },
-            { txt: 'From the first call to the final bow, Spider Ritual handled everything flawlessly. Our wedding entertainment was beyond our wildest expectations.', name: 'Neha & Arjun Pillai', role: 'Private Event, Mumbai', stars: 5 },
-            { txt: 'Their influencer roster is genuinely premium. The creator we worked with drove 3x our usual engagement. Incredibly professional platform.', name: 'Meghna Shah', role: 'Brand Manager, LuxeLabel', stars: 5 },
-            { txt: 'Spider Ritual is our go-to for every event now. The curation is impeccable and the booking process is seamless. Five stars always.', name: 'Dev Malhotra', role: 'Founder, EventCraft', stars: 5 },
-        ];
-
-        const GPAL = [
-            ['#1a0010', '#3d0020', '#ff1f4b'], ['#0d0a00', '#2a2000', '#c9a84c'],
-            ['#000d1a', '#001a33', '#1f6bff'], ['#0a000a', '#1a001a', '#8b1a8b'],
-            ['#001a0d', '#003320', '#1f7b3b'], ['#1a0000', '#330000', '#8b0000'],
-            ['#0a0510', '#1a0a20', '#6b1fff'], ['#100500', '#200a00', '#ff6b1f'],
-            ['#001515', '#002a2a', '#00b4b4'], ['#0f0f0f', '#1e1e1e', '#888'],
-            ['#150000', '#2a0505', '#cc2200'], ['#050f00', '#0a1e00', '#22aa00'],
-        ];
-        const GDATA = [
-            { h: 360, t: 'Award Night 2025', c: 'Corporate' }, { h: 280, t: 'Fashion Week Show', c: 'Entertainment' },
-            { h: 420, t: 'Stand-up Special', c: 'Comedy' }, { h: 300, t: 'Music Concert', c: 'Live Music' },
-            { h: 380, t: 'Brand Launch', c: 'Corporate' }, { h: 260, t: 'Wedding Ceremony', c: 'Private' },
-            { h: 440, t: 'Film Premiere', c: 'Bollywood' }, { h: 290, t: 'Podcast Recording', c: 'Digital' },
-            { h: 320, t: 'Product Campaign', c: 'Brand' }, { h: 350, t: 'TV Interview', c: 'Media' },
-            { h: 400, t: 'Comedy Festival', c: 'Comedy' }, { h: 270, t: 'Social Campaign', c: 'Influencer' },
-        ];
-        const GICONS = ['mic', 'music', 'film', 'star', 'tv', 'laugh', 'video', 'edit', 'users', 'radio', 'mic', 'music'];
-
-        // ── CURSOR ─────────────────────────────────
-        const cursor = document.getElementById('cursor'), ring = document.getElementById('cur-ring');
-        document.addEventListener('mousemove', e => {
-            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
-            gsap.to(ring, { left: e.clientX, top: e.clientY, duration: .18, ease: 'power2.out' });
-        });
-
-        // ── LOADER ─────────────────────────────────
-        let lv = 0; const lp = document.getElementById('ldp');
-        const li = setInterval(() => {
-            lv = Math.min(lv + Math.random() * 16, 100); lp.textContent = Math.floor(lv);
-            if (lv >= 100) {
-                clearInterval(li); setTimeout(() => {
-                    gsap.to('#loader', {
-                        opacity: 0, duration: .8, onComplete: () => {
-                            document.getElementById('loader').style.display = 'none'; initAnim();
-                        }
-                    });
-                }, 350);
-            }
-        }, 110);
-
-        // ── NAV ────────────────────────────────────
-        window.addEventListener('scroll', () => document.getElementById('nb').classList.toggle('sc', scrollY > 80));
-
-        // ── PARTICLES ──────────────────────────────
-        (() => {
-            const c = document.getElementById('pcv'), ctx = c.getContext('2d');
-            let W, H, pts = [];
-            const rs = () => { W = c.width = innerWidth; H = c.height = innerHeight; }; rs();
-            window.addEventListener('resize', rs);
-            for (let i = 0; i < 55; i++)pts.push({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22, r: Math.random() * 1.1 + .3, a: Math.random() * .35 + .05, red: Math.random() > .6 });
-            const draw = () => {
-                ctx.clearRect(0, 0, W, H);
-                pts.forEach(p => {
-                    p.x += p.vx; p.y += p.vy; if (p.x < 0) p.x = W; if (p.x > W) p.x = 0; if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = p.red ? `rgba(255,31,75,${p.a})` : `rgba(255,255,255,${p.a * .28})`; ctx.fill();
-                });
-                requestAnimationFrame(draw);
-            }; draw();
-        })();
-
-        // ── HERO CANVAS ────────────────────────────
-        (() => {
-            const c = document.getElementById('hcv'), ctx = c.getContext('2d');
-            let W, H, t = 0, mx = .5, my = .5;
-            const rs = () => { W = c.width = c.offsetWidth; H = c.height = c.offsetHeight; }; rs();
-            window.addEventListener('resize', rs);
-            document.addEventListener('mousemove', e => { mx = e.clientX / W; my = e.clientY / H; });
-            const sp = 14, ri = 9;
-            const draw = () => {
-                ctx.clearRect(0, 0, W, H);
-                const cx = W * .5 + (mx - .5) * 50, cy = H * .5 + (my - .5) * 30, r = Math.min(W, H) * .47;
-                for (let i = 0; i < sp; i++) {
-                    const a = (i / sp) * Math.PI * 2 + t * .0014, w = Math.sin(t * .012 + i) * .03;
-                    const x2 = cx + Math.cos(a + w) * r, y2 = cy + Math.sin(a + w) * r;
-                    const g = ctx.createLinearGradient(cx, cy, x2, y2);
-                    g.addColorStop(0, 'rgba(255,31,75,.42)'); g.addColorStop(1, 'rgba(255,31,75,0)');
-                    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(x2, y2); ctx.strokeStyle = g; ctx.lineWidth = .65; ctx.stroke();
-                }
-                for (let ri2 = 1; ri2 <= ri; ri2++) {
-                    const rr = (ri2 / ri) * r, pulse = 1 + Math.sin(t * .017 - ri2 * .6) * .023;
-                    ctx.beginPath();
-                    for (let i = 0; i <= sp; i++) {
-                        const a = (i / sp) * Math.PI * 2 + t * .0014, w = Math.sin(t * .012 + i + ri2) * .04;
-                        const x = cx + Math.cos(a + w) * rr * pulse, y = cy + Math.sin(a + w) * rr * pulse;
-                        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-                    }
-                    ctx.closePath(); ctx.strokeStyle = `rgba(255,31,75,${(.16 * (1 - ri2 / ri) + .04) * (1 + (mx - .5) * .28)})`; ctx.lineWidth = .5; ctx.stroke();
-                }
-                const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 48);
-                g.addColorStop(0, 'rgba(255,31,75,.32)'); g.addColorStop(1, 'rgba(255,31,75,0)');
-                ctx.beginPath(); ctx.arc(cx, cy, 48, 0, Math.PI * 2); ctx.fillStyle = g; ctx.fill();
-                t++; requestAnimationFrame(draw);
-            }; draw();
-        })();
-
-        // ── ABOUT CANVAS ───────────────────────────
-        (() => {
-            const c = document.getElementById('acv'), ctx = c.getContext('2d');
-            const W = 420, H = 420, cx = 210, cy = 210, r = 192, sp = 12, ri = 7; let t = 0;
-            const draw = () => {
-                ctx.clearRect(0, 0, W, H);
-                for (let i = 0; i < sp; i++) {
-                    const a = (i / sp) * Math.PI * 2 + t * .003;
-                    const g = ctx.createLinearGradient(cx, cy, cx + Math.cos(a) * r, cy + Math.sin(a) * r);
-                    g.addColorStop(0, 'rgba(255,31,75,.48)'); g.addColorStop(1, 'rgba(255,31,75,0)');
-                    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r); ctx.strokeStyle = g; ctx.lineWidth = .75; ctx.stroke();
-                }
-                for (let ri2 = 1; ri2 <= ri; ri2++) {
-                    const rr = (ri2 / ri) * r; ctx.beginPath();
-                    for (let i = 0; i <= sp; i++) { const a = (i / sp) * Math.PI * 2 + t * .003; i === 0 ? ctx.moveTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr) : ctx.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr); }
-                    ctx.closePath(); ctx.strokeStyle = `rgba(255,31,75,${.2 * (1 - ri2 / ri) + .05})`; ctx.lineWidth = .55; ctx.stroke();
-                }
-                t++; requestAnimationFrame(draw);
-            }; draw();
-        })();
-
-        // ── MARQUEE ────────────────────────────────
-        (() => {
-            const items = ['Anchors', 'Singers', 'Actors', 'Actresses', 'Serial Artists', 'Comedians', 'Creators', 'Influencers', 'Streamers', 'YouTubers'];
-            const mq = document.getElementById('mq'); let h = '';
-            for (let i = 0; i < 4; i++)items.forEach(it => { h += `<span>${it}</span><span class="mq-dot">✦</span>`; });
-            mq.innerHTML = h;
-        })();
-
-        // ── CATEGORIES ─────────────────────────────
-        const cg = document.getElementById('cg');
-        CATS.forEach(c => {
-            cg.innerHTML += `
-  <div class="cat-card fu">
-    <div class="cat-iw" style="background:${c.col}18;border:1px solid ${c.col}30;">${svgIcon(c.icon, 24, c.col)}</div>
-    <div class="cat-nm">${c.name}</div>
-    <div class="cat-cnt">${c.count}</div>
-    <div class="cat-arr">${svgIcon('arrow', 14, 'currentColor')}</div>
-    <div class="cat-shine"></div>
-    <div class="cat-blob" style="background:${c.col};"></div>
-  </div>`;
-        });
-
-        // ── TALENT ─────────────────────────────────
-        const tg = document.getElementById('tg'), tf = document.getElementById('tf');
-        const acs = ['All', ...new Set(TALENTS.map(t => t.cat))];
-        acs.forEach((cat, i) => {
-            const b = document.createElement('button');
-            b.className = 'fb' + (i === 0 ? ' on' : ''); b.textContent = cat;
-            b.addEventListener('click', () => { document.querySelectorAll('.fb').forEach(x => x.classList.remove('on')); b.classList.add('on'); filterT(cat); });
-            tf.appendChild(b);
-        });
-
-        function buildT(list) {
-            tg.innerHTML = list.map(t => `
-  <div class="tc">
-    <div class="ti">
-      <div class="tp" style="background:linear-gradient(155deg,${t.ic}22,#060406 68%);">
-        <div style="width:76px;height:76px;border-radius:50%;background:${t.ic}18;border:1px solid ${t.ic}30;display:flex;align-items:center;justify-content:center;">${svgIcon(t.ik, 34, t.ic)}</div>
-        <div style="font-family:'Bebas Neue';font-size:11px;letter-spacing:3px;color:${t.ic};opacity:.45;">${t.cat.toUpperCase()}</div>
-      </div>
-      <div class="tio"></div>
-      <span class="tbg" style="background:${t.bc};">${t.badge}</span>
-    </div>
-    <div class="tin">
-      <div class="tnm">${t.name}</div>
-      <div class="tcat">${svgIcon(t.ik, 9, t.ic)} ${t.cat}</div>
-      <div class="tdesc">${t.desc}</div>
-      <div class="tacts">
-        <button class="bb" onclick="openM('${t.name}','${t.cat}')">Book Now</button>
-        <button class="wb">${svgIcon('heart', 15, 'currentColor')}</button>
-      </div>
-    </div>
-  </div>`).join('');
-        }
-        function filterT(cat) {
-            const f = cat === 'All' ? TALENTS : TALENTS.filter(t => t.cat === cat);
-            gsap.to('#tg', { opacity: 0, duration: .18, onComplete: () => { buildT(f); gsap.fromTo('.tc', { opacity: 0, y: 28 }, { opacity: 1, y: 0, stagger: .06, duration: .5, ease: 'power2.out' }); gsap.to('#tg', { opacity: 1, duration: .18 }); } });
-        }
-        buildT(TALENTS);
-
-        // ── GALLERY ────────────────────────────────
-        const gg = document.getElementById('gg');
-        GDATA.forEach((g, i) => {
-            const [c1, c2, ac] = GPAL[i % GPAL.length], ik = GICONS[i % GICONS.length];
-            gg.innerHTML += `
-  <div class="gi" onclick="openLB(${i})">
-    <div class="gpl" style="height:${g.h}px;background:linear-gradient(155deg,${c1},${c2});">
-      <div style="display:flex;flex-direction:column;align-items:center;gap:11px;">
-        <div style="width:52px;height:52px;border-radius:11px;background:${ac}20;border:1px solid ${ac}28;display:flex;align-items:center;justify-content:center;">${svgIcon(ik, 24, ac)}</div>
-        <div style="font-family:'Bebas Neue';font-size:10px;letter-spacing:3px;color:${ac};opacity:.38;">${g.c}</div>
-      </div>
-    </div>
-    <div class="gov"><div class="gov-t">${g.t}</div></div>
-    <div class="gex">${svgIcon('zoom', 13, 'currentColor')}</div>
-  </div>`;
-        });
-
-        function openLB(i) {
-            const [c1, c2, ac] = GPAL[i % GPAL.length], g = GDATA[i];
-            document.getElementById('lbc2').innerHTML = `
-  <div style="width:min(680px,88vw);height:min(480px,66vh);background:linear-gradient(155deg,${c1},${c2});border-radius:10px;border:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:30px;font-style:italic;color:${ac};">${g.t}</div>
-    <div style="font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.35);text-transform:uppercase;">${g.c}</div>
-  </div>`;
-            document.getElementById('lb').classList.add('on');
-        }
-        document.getElementById('lbc').addEventListener('click', () => document.getElementById('lb').classList.remove('on'));
-        document.getElementById('lb').addEventListener('click', e => { if (e.target === document.getElementById('lb')) document.getElementById('lb').classList.remove('on'); });
-
-        // ── TESTIMONIALS ───────────────────────────
-        let ti = 0;
-        const tt = document.getElementById('tt'), tdots = document.getElementById('td');
-        const starsHTML = n => Array(n).fill(`<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`).join('');
-        TESTIS.forEach((t, i) => {
-            tt.innerHTML += `
-  <div class="tsti-card ${i === 0 ? 'on' : ''}">
-    <svg class="tsti-qi" viewBox="0 0 24 24" fill="currentColor"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-    <div class="tsti-stars">${starsHTML(t.stars)}</div>
-    <p class="tsti-txt">"${t.txt}"</p>
-    <div class="tsti-auth">
-      <div class="tsti-av">${svgIcon('person', 20, 'rgba(255,255,255,.55)')}</div>
-      <div><div class="tsti-nm">${t.name}</div><div class="tsti-role">${t.role}</div></div>
-    </div>
-  </div>`;
-            const d = document.createElement('button'); d.className = 'tsti-dot' + (i === 0 ? ' on' : '');
-            d.addEventListener('click', () => goT(i)); tdots.appendChild(d);
-        });
-
-        const visC = () => window.innerWidth > 1024 ? 3 : window.innerWidth > 640 ? 2 : 1;
-        const cardW = () => { const c = tt.querySelector('.tsti-card'); return c ? c.offsetWidth + 22 : 0; };
-        function goT(idx) {
-            const max = Math.max(0, TESTIS.length - visC()); ti = Math.max(0, Math.min(idx, max));
-            tt.style.transform = `translateX(-${ti * cardW()}px)`;
-            document.querySelectorAll('.tsti-card').forEach((c, i) => c.classList.toggle('on', i === ti));
-            document.querySelectorAll('.tsti-dot').forEach((d, i) => d.classList.toggle('on', i === ti));
-        }
-        document.getElementById('tprev').addEventListener('click', () => goT(ti - 1));
-        document.getElementById('tnext').addEventListener('click', () => goT(ti + 1));
-        setInterval(() => goT(ti + 1 >= TESTIS.length ? 0 : ti + 1), 5000);
-
-        // ── MODAL ──────────────────────────────────
-        let curT = '';
-        function openM(name, cat) {
-            curT = name; document.getElementById('mtn').textContent = name;
-            document.getElementById('modal').classList.add('on');
-            gsap.fromTo('.mb', { scale: .88, opacity: 0 }, { scale: 1, opacity: 1, duration: .42, ease: 'back.out(1.7)' });
-        }
-        document.getElementById('mc').addEventListener('click', () => {
-            gsap.to('.mb', { scale: .88, opacity: 0, duration: .28, ease: 'power2.in', onComplete: () => document.getElementById('modal').classList.remove('on') });
-        });
-        document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) document.getElementById('mc').click(); });
-        document.getElementById('sb2').addEventListener('click', () => {
-            const nm = document.getElementById('fn').value.trim(), ph = document.getElementById('fph').value.trim();
-            const dt = document.getElementById('fd').value.trim(), ev = document.getElementById('fev').value.trim();
-            if (!nm || !ph) { alert('Please fill in your name and phone number.'); return; }
-            const msg = `🕷 *Spider Ritual — Booking Request*\n\n*Talent:* ${curT}\n*Name:* ${nm}\n*Phone:* ${ph}\n*Event Date:* ${dt || 'TBD'}\n*Details:* ${ev || 'To be discussed'}\n\n_Sent via SpiderRitual.com_`;
-            window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank');
-            document.getElementById('mc').click();
-        });
-
-        // ── GSAP SCROLL ANIMATIONS ─────────────────
-        function initAnim() {
-            gsap.registerPlugin(ScrollTrigger);
-            gsap.to('.hero-badge', { opacity: 1, y: 0, duration: .7, delay: .2 });
-            gsap.to('.hero-title', { opacity: 1, y: 0, duration: 1, delay: .4, ease: 'power3.out' });
-            gsap.to('.hero-sub', { opacity: 1, duration: .8, delay: .8 });
-            gsap.to('.hero-btns', { opacity: 1, duration: .7, delay: 1 });
-            gsap.utils.toArray('.fu').forEach(el => {
-                gsap.fromTo(el, { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: .88, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
-            });
-            gsap.utils.toArray('.fi').forEach(el => {
-                gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 1.15, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 82%' } });
-            });
-            ScrollTrigger.create({
-                trigger: '#cg', start: 'top 83%', once: true,
-                onEnter: () => gsap.fromTo('.cat-card', { opacity: 0, y: 26, scale: .96 }, { opacity: 1, y: 0, scale: 1, stagger: .05, duration: .55, ease: 'power2.out' })
-            });
-            ScrollTrigger.create({
-                trigger: '#tg', start: 'top 83%', once: true,
-                onEnter: () => gsap.fromTo('.tc', { opacity: 0, y: 34 }, { opacity: 1, y: 0, stagger: .06, duration: .6, ease: 'power2.out' })
-            });
-            ScrollTrigger.create({
-                trigger: '#gg', start: 'top 85%', once: true,
-                onEnter: () => gsap.fromTo('.gi', { opacity: 0, y: 22 }, { opacity: 1, y: 0, stagger: .04, duration: .55, ease: 'power2.out' })
-            });
-            ScrollTrigger.create({
-                trigger: '#testimonials', start: 'top 82%', once: true,
-                onEnter: () => gsap.fromTo('.tsti-card', { opacity: 0, y: 28 }, { opacity: 1, y: 0, stagger: .09, duration: .6, ease: 'power2.out' })
-            });
-            document.querySelectorAll('.snum').forEach(el => {
-                const t = parseInt(el.dataset.t);
-                ScrollTrigger.create({
-                    trigger: el, start: 'top 88%', once: true,
-                    onEnter: () => gsap.to({ v: 0 }, {
-                        v: t, duration: 2.4, ease: 'power2.out',
-                        onUpdate: function () { el.textContent = Math.round(this.targets()[0].v) + (t === 98 ? '%' : '+'); }
-                    })
-                });
-            });
-            gsap.to('#hcv', { yPercent: 16, scrollTrigger: { trigger: '#hero', scrub: 1.2 } });
-            document.querySelectorAll('.cat-card').forEach(c => {
-                c.addEventListener('mouseenter', () => gsap.to(c.querySelector('.cat-iw'), { rotate: -4, scale: 1.1, duration: .3, ease: 'back.out' }));
-                c.addEventListener('mouseleave', () => gsap.to(c.querySelector('.cat-iw'), { rotate: 0, scale: 1, duration: .3 }));
-            });
-        }
+        // Set current year dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // 16 Services Array Data
+        const allServices = [
+            { title: "Marriage Ceremony", desc: "Vivah Sanskar & full wedding rituals by expert Pandits.", image: "https://i.pinimg.com/1200x/f1/e1/1d/f1e11dd20c393a7bf7a50b25bbe3ff4a.jpg" },
+            { title: "Thread Ceremony", desc: "Upanayanam / Janeu Sanskar with complete guidance.", image: "https://i.pinimg.com/736x/4f/51/68/4f51680214ad1efa42ccdafe6fdd65b0.jpg" },
+            { title: "Rudrabhishek Puja", desc: "Basic to Maha Rudrabhishek with full samagri.", image: "https://i.pinimg.com/736x/fe/1e/78/fe1e78f6ef70fb4b1eb2d3b58d493df1.jpg" },
+            { title: "Sankhaua", desc: "Traditional Vedic Sankhaua rituals.", image: "https://thumbs.dreamstime.com/b/jodi-sankha-traditional-folk-dance-ganjam-district-odisha-india-jodi-sankha-traditional-folk-dance-ganjam-district-odisha-340449663.jpg" },
+            { title: "Sankha Sthapana", desc: "Rituals for prosperity and purification by Brahmins.", image: "images/im1.jpeg" },
+            { title: "Hanuman Chalisa Path", desc: "Single or group chanting for Sankat Mochan.", image: "https://i.pinimg.com/736x/8a/40/82/8a408201019d765358dd55ab77501cdb.jpg" },
+            { title: "Griha Pravesh", desc: "Housewarming, Vastu puja, Kalash sthapana & Havan.", image: "https://i.pinimg.com/736x/54/6c/4c/546c4c07f861c2c24ea22a81a5d6b6b0.jpg" },
+            { title: "Naming Ceremony", desc: "Namkaran Sanskar & horoscope-based naming.", image: "https://i.pinimg.com/control1/1200x/38/d0/63/38d0634b976892f566e5d9645622f903.jpg" },
+            { title: "Satyanarayan Puja", desc: "Monthly or special occasion Katha with prasad.", image: "https://i.pinimg.com/736x/97/6d/58/976d58027cff2ff474915c44b291668b.jpg" },
+            { title: "Havan / Yagya", desc: "Navagraha, Durga, and Lakshmi Havan services.", image: "https://i.pinimg.com/1200x/63/5f/60/635f60ca8b55e2adf8fbc8a94809b150.jpg" },
+            { title: "Shraddha / Pitru Karma", desc: "Tarpan rituals and annual Shraddha ceremonies.", image: "https://i.pinimg.com/736x/77/2c/65/772c65063f0f09cfdb30c068d75e0ecd.jpg" },
+            { title: "Bhandari", desc: "Complete arrangements for auspicious feasts.", image: "images/im1.jpeg" },
+            { title: "Festival Pujas", desc: "Brahmins for Ganesh Puja, Durga Puja & more.", image: "https://i.pinimg.com/736x/45/6a/53/456a53e76e9d29a902b30a8fbecbec52.jpg" },
+            { title: "Marwadi Brahmins", desc: "Specialized Pandits for Marwadi traditions.", image: "images/im1.jpeg" },
+            { title: "Telugu Brahmins", desc: "Authentic rituals following Telugu Vedic customs.", image: "images/im1.jpeg" },
+            { title: "Bengali Brahmins", desc: "Purohits for all traditional Bengali ceremonies.", image: "images/im1.jpeg" }
+        ];
+
+        const swiperWrapper = document.getElementById('swiper-services-wrapper');
+
+        // Generate Cards dynamically
+        allServices.forEach((service, index) => {
+            // Formatted number (e.g., 01, 02)
+            const num = (index + 1).toString().padStart(2, '0');
+
+            const slideHTML = `
+                <div class="swiper-slide h-auto">
+                    <div class="service-slide-card rounded-2xl overflow-hidden h-full flex flex-col group">
+                    
+                        <div class="h-48 service-img-wrapper relative flex items-center justify-center overflow-hidden">
+                            <img src="${service.image}" alt="${service.title}" class="absolute inset-0 w-full h-full object-cover z-0" />
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                            <span class="text-[5rem] font-black text-white/5 absolute -right-4 -bottom-6 z-0 pointer-events-none group-hover:text-[#ff1f4b]/10 transition-colors duration-500">${num}</span>
+                            <div class="z-20 relative px-6 text-center">
+                                 <i class="fas fa-om text-3xl text-[#ff1f4b]/50 group-hover:text-[#ff1f4b] transition-colors mb-2 block"></i>
+                            </div>
+                        </div>
+                    
+                        <div class="p-6 flex flex-col flex-grow relative z-20 bg-[#0d0d0d]">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#ff1f4b] transition-colors">${service.title}</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">${service.desc}</p>
+                        
+                            <button onclick="openModal('${service.title}')" class="w-full py-3.5 mt-auto border border-gray-700 text-gray-300 font-bold rounded-lg tracking-wider text-sm uppercase group-hover:bg-[#ff1f4b] group-hover:border-[#ff1f4b] group-hover:text-white transition-all duration-300 shadow-md">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            swiperWrapper.innerHTML += slideHTML;
+        });
+
+        // Initialize Advanced Swiper
+        const initServicesSwiper = new Swiper('.coreServicesSwiper', {
+            // Enable centered slide effect
+            centeredSlides: true,
+            loop: true,
+            grabCursor: true,
+            spaceBetween: 20,
+
+            // Autoplay settings
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+
+            // Pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // Responsive breakpoints
+            breakpoints: {
+                320: {
+                    slidesPerView: 1.15,
+                    spaceBetween: 15,
+                    centeredSlides: true,
+                },
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    centeredSlides: false,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                    centeredSlides: true, // Center the active slide on desktop for premium look
+                },
+                1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                    centeredSlides: true,
+                }
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 
