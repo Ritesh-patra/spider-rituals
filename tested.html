@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider Ritual - Animated Nav</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body class="bg-[#0a0a0a] text-white font-sans overflow-x-hidden">
+
+    <header class="relative w-full bg-black shadow-[0_4px_20px_rgba(255,31,75,0.15)] z-40 border-b border-[#ff1f4b]/20">
+
+        <canvas id="nav-spider-web" class="absolute inset-0 w-full h-full pointer-events-none opacity-70"></canvas>
+
+        <div class="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+            <div class="flex justify-between items-center py-4">
+
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="images/logo1.png" alt="Spider Ritual Logo" class="w-24" />
+                </a>
+
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#categories"
+                        class="text-gray-300 hover:text-[#ff1f4b] text-sm font-semibold uppercase tracking-wider transition-colors glow-text">Categories</a>
+                    <a href="#talent"
+                        class="text-gray-300 hover:text-[#ff1f4b] text-sm font-semibold uppercase tracking-wider transition-colors glow-text">Talent</a>
+                    <a href="#gallery"
+                        class="text-gray-300 hover:text-[#ff1f4b] text-sm font-semibold uppercase tracking-wider transition-colors glow-text">Gallery</a>
+                    <a href="#about"
+                        class="text-gray-300 hover:text-[#ff1f4b] text-sm font-semibold uppercase tracking-wider transition-colors glow-text">About</a>
+                    <a id="header-book-btn" href="#contact"
+                        class="px-5 py-2 border border-[#ff1f4b] text-[#ff1f4b] rounded hover:bg-[#ff1f4b] hover:text-white transition-all shadow-[0_0_10px_rgba(255,31,75,0.2)] hover:shadow-[0_0_20px_rgba(255,31,75,0.6)] font-bold tracking-wider text-sm uppercase">
+                        Book Now
+                    </a>
+                </nav>
+
+                <button id="open-menu-btn"
+                    class="md:hidden text-gray-300 hover:text-[#ff1f4b] focus:outline-none transition-colors">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="menu-overlay"
+        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <aside id="side-menu"
+        class="fixed top-0 right-0 h-full w-64 bg-[#0a0a0a] border-l border-[#ff1f4b]/30 z-50 transform translate-x-full transition-transform duration-300 shadow-[-10px_0_30px_rgba(255,31,75,0.1)] flex flex-col">
+
+        <div class="flex justify-between items-center p-5 border-b border-gray-800">
+            <span class="text-[#ff1f4b] font-bold tracking-widest uppercase">Menu</span>
+            <button id="close-menu-btn" class="text-gray-400 hover:text-[#ff1f4b] transition-colors focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <nav class="flex flex-col p-5 gap-6 mt-4 flex-grow overflow-y-auto">
+            <a href="#categories"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">Categories</a>
+            <a href="#talent"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">Talent</a>
+            <a href="#gallery"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">Gallery</a>
+            <a href="#reviews"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">Reviews</a>
+            <a href="#about"
+                class="text-lg text-gray-300 hover:text-[#ff1f4b] font-medium transition-colors border-b border-gray-800 pb-2">About</a>
+        </nav>
+
+        <div class="p-5 border-t border-gray-800">
+            <a id="side-book-btn" href="#contact"
+                class="block w-full text-center py-3 bg-[#ff1f4b] text-white font-bold rounded hover:bg-red-700 transition-colors shadow-[0_0_15px_rgba(255,31,75,0.4)]">
+                BOOK NOW
+            </a>
+        </div>
+    </aside>
+
+    <!-- Hero Section -->
+
+    <section
+        class="relative w-full min-h-screen flex items-center justify-center overflow-hidden border-b border-[#ff1f4b]/20">
+
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ff1f4b]/5 rounded-full blur-[120px] pointer-events-none z-0">
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center mt-10 md:mt-0">
+
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 mb-8 border border-[#ff1f4b]/50 rounded-full bg-[#ff1f4b]/10 text-[#ff1f4b] text-xs md:text-sm font-bold tracking-[0.2em] uppercase shadow-[0_0_15px_rgba(255,31,75,0.2)] backdrop-blur-sm animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-[#ff1f4b]"></span>
+                Sacred Connections
+            </div>
+
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-tight text-white">
+                Divine Rituals, <br />
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1f4b] to-red-800 text-glow">Seamlessly
+                    Woven.</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+                From pujas to ceremonies, find the right Brahmin for every ritual with <span
+                    class="text-white font-bold tracking-wider">Spider Rituals</span>.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a id="hero-book-btn" href="#book"
+                    class="w-full sm:w-auto px-10 py-4 bg-[#ff1f4b] text-white font-bold rounded text-sm md:text-base uppercase tracking-[0.15em] btn-glow hover:bg-red-600 transition-all duration-300 transform hover:-translate-y-1">
+                    Book a Brahmin
+                </a>
+                <a href="#services"
+                    class="w-full sm:w-auto px-10 py-4 border-2 border-gray-700 text-gray-300 font-bold rounded text-sm md:text-base uppercase tracking-[0.15em] hover:border-[#ff1f4b] hover:text-[#ff1f4b] hover:bg-[#ff1f4b]/5 transition-all duration-300 transform hover:-translate-y-1">
+                    Explore Services
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- about us -->
+    <section id="about" class="relative py-24 bg-[#0a0a0a] overflow-hidden font-sans border-t border-[#ff1f4b]/20">
+
+        <div
+            class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#ff1f4b]/5 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+                <div class="relative w-full h-full min-h-[350px] lg:min-h-[500px] rounded-2xl group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-[#ff1f4b] to-red-900 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+                    </div>
+
+                    <div class="relative h-full w-full  rounded-2xl overflow-hidden border border-[#ff1f4b]/30">
+                        <img src="images/im1.jpeg" alt="Spider Rituals Pandit"
+                            class="absolute inset-0 w-full h-full object-cover  object-center opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700">
+
+                        <!-- <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div> -->
+
+                        <!-- <div class="absolute lg:hidden bottom-6 left-6 bg-black/80 backdrop-blur-md border border-[#ff1f4b]/50 p-4 rounded-xl shadow-[0_0_15px_rgba(255,31,75,0.3)]">
+                        <p class="text-[#ff1f4b] text-3xl font-bold font-serif mb-1">100%</p>
+                        <p class="text-gray-300 text-xs uppercase tracking-wider font-semibold">Authentic Vedic<br>Rituals</p>
+                    </div> -->
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center">
+
+                    <div class="inline-flex items-center gap-3 mb-6">
+                        <span class="w-10 h-[2px] bg-[#ff1f4b]"></span>
+                        <span class="text-[#ff1f4b] text-xs font-bold tracking-[0.25em] uppercase">About Spider
+                            Rituals</span>
+                    </div>
+
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                        Weaving the Sacred <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1f4b] to-red-600">Threads
+                            of Tradition.</span>
+                    </h2>
+
+                    <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-6">
+                        At <strong class="text-white">Spider Rituals</strong>, we understand the profound significance
+                        of sacred ceremonies in your life. Just as a spider intricately weaves its web, we connect
+                        devotees with highly experienced and authentic Brahmins, ensuring every ritual is performed with
+                        precision, devotion, and adherence to Vedic guidelines.
+                    </p>
+                    <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-8">
+                        From finding the right Pandit for your specific needs to organizing the complete Samagri, we
+                        handle the intricacies so you can focus entirely on your prayers and family.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#ff1f4b]/10 border border-[#ff1f4b]/30 flex items-center justify-center text-[#ff1f4b]">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Verified Brahmins</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#ff1f4b]/10 border border-[#ff1f4b]/30 flex items-center justify-center text-[#ff1f4b]">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Complete Samagri Kit</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#ff1f4b]/10 border border-[#ff1f4b]/30 flex items-center justify-center text-[#ff1f4b]">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Hassle-Free Booking</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-[#ff1f4b]/10 border border-[#ff1f4b]/30 flex items-center justify-center text-[#ff1f4b]">
+                                <i class="fas fa-check text-sm"></i>
+                            </div>
+                            <span class="text-gray-300 font-medium">Vedic Accuracy</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="#services-grid"
+                            class="inline-flex items-center gap-2 px-8 py-3 bg-transparent border-2 border-[#ff1f4b] text-[#ff1f4b] font-bold uppercase tracking-wider text-sm rounded hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(255,31,75,0.1)] hover:shadow-[0_0_20px_rgba(255,31,75,0.5)]">
+                            Explore Services <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-20 bg-[#050505] text-white overflow-hidden relative">
+
+        <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#ff1f4b]/5 rounded-[100%] blur-[100px] pointer-events-none z-0">
+        </div>
+
+        <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4 tracking-wide">
+                    Core Ritual <span class="text-[#ff1f4b] drop-shadow-[0_0_15px_rgba(255,31,75,0.5)]">Services</span>
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#ff1f4b] to-transparent mx-auto mb-4"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">Authentic Vedic rituals performed by highly experienced
+                    Brahmins tailored to your traditions.</p>
+            </div>
+
+            <div class="swiper coreServicesSwiper pb-16 px-4">
+                <div class="swiper-wrapper" id="swiper-services-wrapper">
+                </div>
+
+                <div class="swiper-pagination !bottom-0"></div>
+                <div class="swiper-button-prev !left-2 md:!left-10 hidden md:flex"></div>
+                <div class="swiper-button-next !right-2 md:!right-10 hidden md:flex"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+
+        <div class="bg-[#111] border border-[#ff1f4b]/30 w-full max-w-md rounded-2xl p-8 relative shadow-2xl z-10">
+
+            <button type="button" onclick="closeModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-[#ff1f4b] transition-colors focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+
+            <h3 class="text-2xl font-bold text-[#ff1f4b] mb-1">Book Your Ritual</h3>
+            <p id="selected-service-name" class="text-gray-400 text-sm mb-6 font-medium uppercase tracking-widest"></p>
+
+            <form id="whatsapp-form" class="space-y-4">
+                <input type="hidden" id="service-input">
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Name</label>
+                    <input type="text" required id="user-name" placeholder="Enter Your Name"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Phone No.</label>
+                    <input type="tel" required id="phone-number" placeholder="Enter phone number (e.g. +919xxxxxxxxx)"
+                        pattern="[0-9+\- ]{7,20}"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Location</label>
+                    <textarea required id="location" rows="2" placeholder="Enter Full Address"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Are you looking for Brahmin?</label>
+                    <select id="brahmin-pref"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all">
+                        <option value="">Select ethnicity (optional)</option>
+                        <option value="Odia">Odia</option>
+                        <option value="Telugu">Telugu</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Marwadi">Marwadi</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">What are your rituals?</label>
+                    <textarea id="rituals" rows="2" placeholder="Describe the rituals you need"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-white focus:border-[#ff1f4b] outline-none transition-all"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-500 uppercase mb-1">Select Date</label>
+                    <input type="date" required id="ritual-date" onclick="this.showPicker()"
+                        class="w-full bg-black border border-gray-800 p-3 rounded-lg text-gray-300 focus:border-[#ff1f4b] outline-none transition-all cursor-pointer">
+                </div>
+
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeModal()"
+                        class="w-1/3 border border-gray-700 text-gray-400 font-bold py-3 rounded-lg hover:bg-gray-800 hover:text-white transition-all text-sm uppercase tracking-wider">
+                        Cancel
+                    </button>
+                    <button type="submit"
+                        class="w-2/3 bg-[#ff1f4b] text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all shadow-lg shadow-red-900/20 text-sm uppercase tracking-wider">
+                        Send Request
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <style>
+    /* FAQ Accordion Transitions */
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+        opacity: 0;
+    }
+    .faq-box.open .faq-answer {
+        max-height: 300px; /* Adjust if answer is very long */
+        opacity: 1;
+    }
+    .faq-box.open {
+        border-color: #ff1f4b;
+        background: linear-gradient(145deg, #111, #1a0508);
+        box-shadow: 0 10px 30px rgba(255, 31, 75, 0.15);
+    }
+    .faq-box.open .faq-icon-line-vertical {
+        transform: rotate(90deg);
+        opacity: 0;
+    }
+    .faq-box.open h4 {
+        color: #ff1f4b;
+    }
+</style>
+
+<section class="relative py-24 bg-[#050505] overflow-hidden font-sans border-t border-gray-900">
+    
+    <div class="absolute -top-40 -right-40 w-[600px] h-[600px] bg-[#ff1f4b]/5 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        
+        <div class="flex flex-col lg:flex-row gap-16 lg:gap-20">
+            
+            <div class="lg:w-1/3 lg:sticky lg:top-24 self-start">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-8 h-[2px] bg-[#ff1f4b]"></span>
+                    <span class="text-[#ff1f4b] text-sm font-bold tracking-[0.2em] uppercase">Support</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight">
+                    Frequently <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff1f4b] to-red-800">Asked Questions</span>
+                </h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    Clear your doubts before booking. Here are the answers to the most common questions about our authentic Vedic rituals and Brahmin services.
+                </p>
+                <div class="bg-[#111] border border-gray-800 rounded-xl p-6 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-[#ff1f4b]/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                    <h3 class="text-white font-bold mb-2 relative z-10">Still have a question?</h3>
+                    <p class="text-gray-500 text-sm mb-4 relative z-10">Our support team is ready to help you 24/7 via WhatsApp.</p>
+                    <a href="https://wa.me/919348148310" target="_blank" class="inline-flex items-center gap-2 text-[#ff1f4b] font-bold text-sm uppercase tracking-widest hover:text-white transition-colors relative z-10">
+                        Chat with us <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:w-2/3 space-y-5">
+                
+                <div class="faq-box bg-[#0d0d0d] border border-gray-800 rounded-2xl p-6 transition-all duration-300 cursor-pointer" onclick="toggleAdvancedFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold text-gray-200 transition-colors">How do I book a Pandit ji for my ritual?</h4>
+                        <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <span class="absolute w-4 h-[2px] bg-[#ff1f4b] transition-all duration-300"></span>
+                            <span class="faq-icon-line-vertical absolute w-[2px] h-4 bg-[#ff1f4b] transition-all duration-300"></span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 text-sm leading-relaxed border-t border-gray-800 pt-4">
+                            Booking is very simple. Choose your desired service from our "Core Rituals" section, click "Book Now", and fill in your basic details. The request will be sent to our WhatsApp, and our team will instantly confirm your booking and Pandit ji's availability.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-box bg-[#0d0d0d] border border-gray-800 rounded-2xl p-6 transition-all duration-300 cursor-pointer" onclick="toggleAdvancedFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold text-gray-200 transition-colors">Is the Puja Samagri included in the booking?</h4>
+                        <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <span class="absolute w-4 h-[2px] bg-[#ff1f4b] transition-all duration-300"></span>
+                            <span class="faq-icon-line-vertical absolute w-[2px] h-4 bg-[#ff1f4b] transition-all duration-300"></span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 text-sm leading-relaxed border-t border-gray-800 pt-4">
+                            Yes! We offer fully inclusive packages. Our experienced Brahmins will bring all the authentic and pure Puja Samagri required for your specific ritual, so you can focus entirely on your prayers without any hassle.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-box bg-[#0d0d0d] border border-gray-800 rounded-2xl p-6 transition-all duration-300 cursor-pointer" onclick="toggleAdvancedFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold text-gray-200 transition-colors">Do you provide Brahmins based on specific regional traditions?</h4>
+                        <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <span class="absolute w-4 h-[2px] bg-[#ff1f4b] transition-all duration-300"></span>
+                            <span class="faq-icon-line-vertical absolute w-[2px] h-4 bg-[#ff1f4b] transition-all duration-300"></span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 text-sm leading-relaxed border-t border-gray-800 pt-4">
+                            Absolutely. We understand that every region has its unique Vedic traditions. We provide specialized Pandits including Marwadi, Telugu, Bengali, and North Indian Brahmins to ensure your ritual is conducted exactly as per your family's customs.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-box bg-[#0d0d0d] border border-gray-800 rounded-2xl p-6 transition-all duration-300 cursor-pointer" onclick="toggleAdvancedFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-lg font-bold text-gray-200 transition-colors">How are the payments handled?</h4>
+                        <div class="relative w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <span class="absolute w-4 h-[2px] bg-[#ff1f4b] transition-all duration-300"></span>
+                            <span class="faq-icon-line-vertical absolute w-[2px] h-4 bg-[#ff1f4b] transition-all duration-300"></span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 mt-4 text-sm leading-relaxed border-t border-gray-800 pt-4">
+                            Once your booking is confirmed over WhatsApp, we will share the payment details. You can pay securely via UPI, Bank Transfer, or Cash upon completion of the ritual, depending on the service package you choose.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function toggleAdvancedFaq(clickedBox) {
+        // Find all faq boxes
+        const allBoxes = document.querySelectorAll('.faq-box');
+        
+        // Check if the clicked box is already open
+        const isOpen = clickedBox.classList.contains('open');
+
+        // Close all boxes first for a clean accordion effect
+        allBoxes.forEach(box => {
+            box.classList.remove('open');
+        });
+
+        // If it wasn't open, open it now
+        if (!isOpen) {
+            clickedBox.classList.add('open');
+        }
+    }
+</script>
+  
+
+    <footer
+        class="relative bg-[#050505] pt-20 pb-10 border-t border-[#ff1f4b]/20 overflow-hidden font-sans text-gray-300">
+
+        <div
+            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[600px] h-[200px] bg-[#ff1f4b]/5 blur-[100px] pointer-events-none z-0">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+
+                <div class="flex flex-col">
+                    <a href="#" class="flex items-center gap-3 group mb-6 inline-block w-fit">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                            class="group-hover:drop-shadow-[0_0_8px_rgba(255,31,75,0.8)] transition-all">
+                            <path d="M12 2C12 2 7 7 7 12.5C7 15.6 9 18.4 12 20C15 18.4 17 15.6 17 12.5C17 7 12 2 12 2Z"
+                                fill="#ff1f4b" opacity=".9" />
+                            <circle cx="12" cy="11" r="3" fill="#ff1f4b" />
+                            <path d="M5 11 Q2 12 1 15" stroke="#ff1f4b" stroke-width="1.5" stroke-linecap="round"
+                                opacity=".7" />
+                            <path d="M5 15 Q2 16 2 19" stroke="#ff1f4b" stroke-width="1.5" stroke-linecap="round"
+                                opacity=".7" />
+                            <path d="M19 11 Q22 12 23 15" stroke="#ff1f4b" stroke-width="1.5" stroke-linecap="round"
+                                opacity=".7" />
+                            <path d="M19 15 Q22 16 22 19" stroke="#ff1f4b" stroke-width="1.5" stroke-linecap="round"
+                                opacity=".7" />
+                        </svg>
+                        <span
+                            class="text-2xl font-bold tracking-widest text-white group-hover:text-[#ff1f4b] transition-colors">Spider
+                            Rituals</span>
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Seamlessly weaving the sacred threads of tradition. Find the most authentic and experienced
+                        Brahmins for all your Vedic rituals and ceremonies.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-[#111] border border-gray-800 flex items-center justify-center hover:border-[#ff1f4b] hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_15px_rgba(255,31,75,0.5)]">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-[#111] border border-gray-800 flex items-center justify-center hover:border-[#ff1f4b] hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_15px_rgba(255,31,75,0.5)]">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-[#111] border border-gray-800 flex items-center justify-center hover:border-[#ff1f4b] hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] hover:shadow-[0_0_15px_rgba(255,31,75,0.5)]">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6 relative inline-block">
+                        Quick Links
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-[#ff1f4b]"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                About Us</a></li>
+                        <li><a href="#talent"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Our Talent</a></li>
+                        <li><a href="#gallery"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Gallery</a></li>
+                        <li><a href="#testimonials"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Reviews</a></li>
+                        <li><a href="#contact"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6 relative inline-block">
+                        Top Services
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-[#ff1f4b]"></span>
+                    </h4>
+                    <ul class="space-y-3">
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Marriage Ceremony</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Griha Pravesh</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Rudrabhishek Puja</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Havan / Yagya</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm flex items-center gap-2 group"><span
+                                    class="w-2 h-[1px] bg-gray-600 group-hover:bg-[#ff1f4b] transition-colors"></span>
+                                Naming Ceremony</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest mb-6 relative inline-block">
+                        Get In Touch
+                        <span class="absolute -bottom-2 left-0 w-1/2 h-[2px] bg-[#ff1f4b]"></span>
+                    </h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-[#ff1f4b] mt-1"></i>
+                            <span class="text-gray-400 text-sm">Bhubaneswar, Odisha, India</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-phone-alt text-[#ff1f4b]"></i>
+                            <a href="tel:+919348148310"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm font-bold tracking-wider">+91
+                                9348148310</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-[#ff1f4b]"></i>
+                            <a href="mailto:booking@spider-rituals.com"
+                                class="text-gray-400 hover:text-[#ff1f4b] transition-colors text-sm">booking@spider-rituals.com</a>
+                        </li>
+                    </ul>
+
+                    <div class="mt-6">
+                        <a href="https://wa.me/919348148310" target="_blank"
+                            class="inline-flex items-center gap-2 w-full justify-center px-4 py-3 bg-[#111] border border-[#ff1f4b] text-[#ff1f4b] font-bold rounded hover:bg-[#ff1f4b] hover:text-white transition-all duration-300 text-sm uppercase tracking-widest shadow-[0_0_10px_rgba(255,31,75,0.1)]">
+                            <i class="fab fa-whatsapp text-lg"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-xs text-center md:text-left">
+                    &copy; <span id="current-year"></span> Spider Rituals. All rights reserved.
+                </p>
+                <div class="flex gap-4 text-xs text-gray-500">
+                    <a href="#" class="hover:text-[#ff1f4b] transition-colors">Privacy Policy</a>
+                    <span class="text-gray-800">|</span>
+                    <a href="#" class="hover:text-[#ff1f4b] transition-colors">Terms of Service</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Set current year dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // 16 Services Array Data
+        const allServices = [
+            { title: "Marriage Ceremony", desc: "Vivah Sanskar & full wedding rituals by expert Pandits.", image: "https://i.pinimg.com/1200x/f1/e1/1d/f1e11dd20c393a7bf7a50b25bbe3ff4a.jpg" },
+            { title: "Thread Ceremony", desc: "Upanayanam / Janeu Sanskar with complete guidance.", image: "https://i.pinimg.com/736x/4f/51/68/4f51680214ad1efa42ccdafe6fdd65b0.jpg" },
+            { title: "Rudrabhishek Puja", desc: "Basic to Maha Rudrabhishek with full samagri.", image: "https://i.pinimg.com/736x/fe/1e/78/fe1e78f6ef70fb4b1eb2d3b58d493df1.jpg" },
+            { title: "Sankhaua", desc: "Traditional Vedic Sankhaua rituals.", image: "https://thumbs.dreamstime.com/b/jodi-sankha-traditional-folk-dance-ganjam-district-odisha-india-jodi-sankha-traditional-folk-dance-ganjam-district-odisha-340449663.jpg" },
+            { title: "Sankha Sthapana", desc: "Rituals for prosperity and purification by Brahmins.", image: "images/im1.jpeg" },
+            { title: "Hanuman Chalisa Path", desc: "Single or group chanting for Sankat Mochan.", image: "https://i.pinimg.com/736x/8a/40/82/8a408201019d765358dd55ab77501cdb.jpg" },
+            { title: "Griha Pravesh", desc: "Housewarming, Vastu puja, Kalash sthapana & Havan.", image: "https://i.pinimg.com/736x/54/6c/4c/546c4c07f861c2c24ea22a81a5d6b6b0.jpg" },
+            { title: "Naming Ceremony", desc: "Namkaran Sanskar & horoscope-based naming.", image: "https://i.pinimg.com/control1/1200x/38/d0/63/38d0634b976892f566e5d9645622f903.jpg" },
+            { title: "Satyanarayan Puja", desc: "Monthly or special occasion Katha with prasad.", image: "https://i.pinimg.com/736x/97/6d/58/976d58027cff2ff474915c44b291668b.jpg" },
+            { title: "Havan / Yagya", desc: "Navagraha, Durga, and Lakshmi Havan services.", image: "https://i.pinimg.com/1200x/63/5f/60/635f60ca8b55e2adf8fbc8a94809b150.jpg" },
+            { title: "Shraddha / Pitru Karma", desc: "Tarpan rituals and annual Shraddha ceremonies.", image: "https://i.pinimg.com/736x/77/2c/65/772c65063f0f09cfdb30c068d75e0ecd.jpg" },
+            { title: "Bhandari", desc: "Complete arrangements for auspicious feasts.", image: "images/im1.jpeg" },
+            { title: "Festival Pujas", desc: "Brahmins for Ganesh Puja, Durga Puja & more.", image: "https://i.pinimg.com/736x/45/6a/53/456a53e76e9d29a902b30a8fbecbec52.jpg" },
+            { title: "Marwadi Brahmins", desc: "Specialized Pandits for Marwadi traditions.", image: "images/im1.jpeg" },
+            { title: "Telugu Brahmins", desc: "Authentic rituals following Telugu Vedic customs.", image: "images/im1.jpeg" },
+            { title: "Bengali Brahmins", desc: "Purohits for all traditional Bengali ceremonies.", image: "images/im1.jpeg" }
+        ];
+
+        const swiperWrapper = document.getElementById('swiper-services-wrapper');
+
+        // Generate Cards dynamically
+        allServices.forEach((service, index) => {
+            // Formatted number (e.g., 01, 02)
+            const num = (index + 1).toString().padStart(2, '0');
+
+            const slideHTML = `
+                <div class="swiper-slide h-auto">
+                    <div class="service-slide-card rounded-2xl overflow-hidden h-full flex flex-col group">
+                    
+                        <div class="h-48 service-img-wrapper relative flex items-center justify-center overflow-hidden">
+                            <img src="${service.image}" alt="${service.title}" class="absolute inset-0 w-full h-full object-cover z-0" />
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
+                            <span class="text-[5rem] font-black text-white/5 absolute -right-4 -bottom-6 z-0 pointer-events-none group-hover:text-[#ff1f4b]/10 transition-colors duration-500">${num}</span>
+                            <div class="z-20 relative px-6 text-center">
+                                 <i class="fas fa-om text-3xl text-[#ff1f4b]/50 group-hover:text-[#ff1f4b] transition-colors mb-2 block"></i>
+                            </div>
+                        </div>
+                    
+                        <div class="p-6 flex flex-col flex-grow relative z-20 bg-[#0d0d0d]">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-[#ff1f4b] transition-colors">${service.title}</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">${service.desc}</p>
+                        
+                            <button onclick="openModal('${service.title}')" class="w-full py-3.5 mt-auto border border-gray-700 text-gray-300 font-bold rounded-lg tracking-wider text-sm uppercase group-hover:bg-[#ff1f4b] group-hover:border-[#ff1f4b] group-hover:text-white transition-all duration-300 shadow-md">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            swiperWrapper.innerHTML += slideHTML;
+        });
+
+        // Initialize Advanced Swiper
+        const initServicesSwiper = new Swiper('.coreServicesSwiper', {
+            // Enable centered slide effect
+            centeredSlides: true,
+            loop: true,
+            grabCursor: true,
+            spaceBetween: 20,
+
+            // Autoplay settings
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+
+            // Pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // Responsive breakpoints
+            breakpoints: {
+                320: {
+                    slidesPerView: 1.15,
+                    spaceBetween: 15,
+                    centeredSlides: true,
+                },
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    centeredSlides: false,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                    centeredSlides: true, // Center the active slide on desktop for premium look
+                },
+                1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                    centeredSlides: true,
+                }
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

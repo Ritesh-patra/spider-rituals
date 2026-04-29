@@ -1,0 +1,48 @@
+    /* nav section */
+       
+       /* Glowing Text Effect */
+        .glow-text:hover {
+            text-shadow: 0 0 10px rgba(255, 31, 75, 0.8);
+        }
+        /* Custom Scrollbar for Side Nav */
+        #side-menu::-webkit-scrollbar {
+            width: 4px;
+        }
+        #side-menu::-webkit-scrollbar-thumb {
+            background-color: #ff1f4b;
+            border-radius: 10px;
+        }
+
+        /* hero section */
+        /* Custom Glowing Effects */
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 31, 75, 0.6);
+        }
+        .btn-glow {
+            box-shadow: 0 0 20px rgba(255, 31, 75, 0.4);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(255, 31, 75, 0.8);
+        }
+
+        /* services */
+        /* Premium Red Glow and Spider Theme Styles */
+    .ritual-card {
+        background: #111;
+        border: 1px solid rgba(255, 31, 75, 0.2);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .ritual-card:hover {
+        border-color: #ff1f4b;
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(255, 31, 75, 0.2);
+    }
+    .ritual-img-placeholder {
+        background: linear-gradient(45deg, #000, #222);
+        border-bottom: 2px solid #ff1f4b;
+    }
+    #booking-modal {
+        backdrop-filter: blur(8px);
+    }
+
+        
