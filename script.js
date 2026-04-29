@@ -67,7 +67,7 @@ function animateNavCanvas() {
     // Draw Particle (Red)
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255, 31, 75, 0.7)";
+   ctx.fillStyle = "rgba(49, 196, 211, 0.7)";
     ctx.fill();
 
     // Connect particles to create the web effect
@@ -173,7 +173,7 @@ const rawMessage = `*New Booking Request | Spider Rituals*
 
 Please confirm the booking.`;
       // Replace with your WhatsApp number (country code, no +). Using footer number by default.
-      const waNumber = '919348148310';
+      const waNumber = '919078161888';
       const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(rawMessage)}`;
 
       // Open WhatsApp (web or app)
